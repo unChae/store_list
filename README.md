@@ -21,6 +21,9 @@ print store sale pruduct list by python crawling
 ###Complete
 - gs25, emart24 크롤링 완료
 
+###Todolist
+- gs25, emart24 크롤링한 데이터 정규화 시키기
+
 ###add file
 + selenium_test file
 + chromedriver.exe
