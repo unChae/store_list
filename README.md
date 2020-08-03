@@ -1,6 +1,8 @@
 # store_list
 print store sale pruduct list by python crawling
 
+2020-07-31
+
 ###Complete
 - crawling
 - test table에 python으로 insert
@@ -14,4 +16,15 @@ print store sale pruduct list by python crawling
 
 ###Problem
 - 작성자가 admin이 입력되지 않는다.
-- 날짜 받아와서 넣어야 합니다.(지금 일단 7월1일부터 7월31일까지로 대충 넣어뒀으니)
+
+2020-08-03
+###Complete
+- gs25, emart24 크롤링 완료
+
+###add file
++ selenium_test file
++ chromedriver.exe
++ debug.log
++ selenium_test.py
++ t1.py
++ t2.py
