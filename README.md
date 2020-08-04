@@ -18,6 +18,7 @@ print store sale pruduct list by python crawling
 - 작성자가 admin이 입력되지 않는다.
                                                                                                                                                                                                                                                                                                                                                                                                                    
 2020-08-03
+
 ###Complete
 - gs25, emart24 크롤링 완료
 
@@ -33,10 +34,15 @@ print store sale pruduct list by python crawling
 + t2.py
 
 2020-08-04
+
 ###Complete
 - cu 크롤링 완료
 - 크롤링한 데이터 포매팅 완료
 - sale 데이터 별개로 크롤링 완료
+
+###Todolist
+- 주석 처리
+- 불필요한 코드 정리
 
 ###add file
 + deploy
