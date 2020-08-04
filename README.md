@@ -1,6 +1,7 @@
 # store_list
 print store sale pruduct list by python crawling
 
+---
 2020-07-31
 
 ###Complete
@@ -16,7 +17,8 @@ print store sale pruduct list by python crawling
 
 ###Problem
 - 작성자가 admin이 입력되지 않는다.
-                                                                                                                                                                                                                                                                                                                                                                                                                   
+
+---                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 2020-08-03
 
 ###Complete
@@ -33,6 +35,7 @@ print store sale pruduct list by python crawling
 + t1.py
 + t2.py
 
+---
 2020-08-04
 
 ###Complete
@@ -43,6 +46,7 @@ print store sale pruduct list by python crawling
 ###Todolist
 - 주석 처리
 - 불필요한 코드 정리
+- 비동기 처리로 크롤링 속도 올리기
 
 ###add file
 + deploy
