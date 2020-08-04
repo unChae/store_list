@@ -17,7 +17,7 @@ time.sleep(3)
 
 cw_plus = browser.find_element_by_css_selector(".myptab").find_elements_by_tag_name("li")
 
-cw_plus[1].click()
+cw_plus[3].click()
 time.sleep(2)
 
 # 내부 아이템 크롤링
@@ -33,7 +33,7 @@ while check:
     except:
         check = False
         continue
-    print(last_page)
+
     for index, item in enumerate(items):
 
         plus  = item.find_element_by_css_selector(".prod_box .flag_box").get_attribute('textContent')
@@ -41,17 +41,14 @@ while check:
             continue
 
         title  = item.find_element_by_css_selector(".prod_box .tit").get_attribute('textContent')
-        price  = item.find_element_by_css_selector(".prod_box .price").get_attribute('textContent')
+        price  = item.find_element_by_css_selector(".prod_box > .price").get_attribute('textContent')
+        price = price.split("원")[0]
         try:
             img = item_images[index].get_attribute('src')
         except:
             img = "no_image"
-        a = []
-        a.append(title)
-        a.append(price)
-        a.append(plus)
-        a.append(img)
-        result_item.append(a)
+        print([title, price, plus, img])
+        result_item.append([title, price, plus, img])
 
     browser.execute_script("return goodsPageController.moveControl(1)")
     time.sleep(2)
