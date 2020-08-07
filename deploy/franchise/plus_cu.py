@@ -1,6 +1,6 @@
-from franchise.modules import fm
+from franchise.modules import format
 
-def cu(driver, tab, time):
+def getData(driver, tab, time):
     driver.switch_to_window(tab)
 
     result_item = []
@@ -18,7 +18,7 @@ def cu(driver, tab, time):
             img = item.find_element_by_css_selector(".photo").find_element_by_tag_name("img").get_attribute('src')
             title = item.find_element_by_css_selector(".prodName").get_attribute('textContent')
             price = item.find_element_by_css_selector(".prodPrice").find_element_by_tag_name("span").get_attribute('textContent')
-            price = fm.price(price)
+            price = format.price(price)
             plus = item.find_element_by_tag_name("ul li").get_attribute('textContent')
             print([title, price, plus, img])
             result_item.append([title, price, plus, img])

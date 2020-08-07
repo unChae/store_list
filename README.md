@@ -59,3 +59,23 @@ print store sale pruduct list by python crawling
         + s_emart.py
         + modules
             + fm.py
+
+---
+2020-08-07
+
+###Complete
+- 실제 서버 데이터베이스에 데이터 업로딩 완료
+- 파일명 변수명 조금 정리
+
+###Todolist
+- 속도 개선 여러개의 홈페이지를 한번에 크롤링 돌릴 수 있도록
+- 세븐 일레븐 추가
+- itemlist 1+1, 2+1, 3+1 순서대로 sort
+
+###add file
++ insert_check.py
++ insert_data.py
++ sort_items.py
++ plus_seven.py
++ sale_seven.py
+

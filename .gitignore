@@ -1,0 +1,5 @@
+.ini
+test/
+selenium_test/
+.log
+__pycache__

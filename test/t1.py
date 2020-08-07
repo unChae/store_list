@@ -14,6 +14,7 @@ multiple_files = [
 
 data = {
     'w': '',
+    'mb_id':'admin',
     'bo_table':'item',
     'ca_name':'프랜차이즈',
     'wr_10':78,

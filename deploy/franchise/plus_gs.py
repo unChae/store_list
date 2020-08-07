@@ -1,6 +1,6 @@
-from franchise.modules import fm
+from franchise.modules import format
 
-def gs(driver, tab, time):
+def getData(driver, tab, time):
     driver.switch_to_window(tab)
 
     cw_plus = driver.find_element_by_css_selector(".myptab").find_elements_by_tag_name("li")
@@ -31,11 +31,11 @@ def gs(driver, tab, time):
             title  = item.find_element_by_css_selector(".prod_box .tit").get_attribute('textContent')
             price  = item.find_element_by_css_selector(".prod_box .price").get_attribute('textContent')
             price = price.split("원")[0]
-            price = fm.price(price)
+            price = format.price(price)
             try:
                 img = item_images[index].get_attribute('src')
             except:
-                img = "https://vignette.wikia.nocookie.net/asher-altens/images/3/3b/112815953-stock-vector-no-image-available-icon-flat-vector.jpg/revision/latest?cb=20200517192640"
+                img = ""
             print([title, price, plus, img])
             result_item.append([title, price, plus, img])
 
