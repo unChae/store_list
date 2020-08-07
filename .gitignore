@@ -1,5 +1,5 @@
-.ini
-test/
-selenium_test/
-.log
-__pycache__
+*.ini
+.test/
+.selenium_test/
+*.log
+.__pycache__/
