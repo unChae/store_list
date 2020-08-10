@@ -1,4 +1,4 @@
-from franchise.modules import format
+from modules import format
 
 def getData(driver, tab, time):
     driver.switch_to_window(tab)

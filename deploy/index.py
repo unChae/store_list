@@ -3,7 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.wait import WebDriverWait
 
-from franchise import plus_cu, plus_emart, plus_gs, plus_seven
+from franchise import plus_cu, plus_emart, plus_gs
 from franchise import sale_emart
 
 #chromedriver 경로 설정
@@ -45,19 +45,19 @@ res.append(plus_gs.getData(driver, tabs[1], time))
 # sale
 res.append(sale_emart.getData(driver, tabs[2], time))
 
-from franchise.modules import insert_check
-from franchise.modules import sort_items
-from franchise.modules import insert_data
+from modules import insert_check
+from modules import sort_items
+from modules import insert_data
 
 endTime = time.time() - startTime
 print("runtime for get data:", endTime)
 
 # check for database insert data
 ans = insert_check.func(res)
-# sorted_res = sort_items.func(res)
+sorted_res = sort_items.func(res)
 
 if ans == "Y" or ans == "y":
-    insert_data.func(res)
+    insert_data.func(sorted_res)
 
 endTime = time.time() - startTime
 print("total runtime:", endTime)

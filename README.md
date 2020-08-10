@@ -79,3 +79,18 @@ print store sale pruduct list by python crawling
 + plus_seven.py
 + sale_seven.py
 
+
+---
+2020-08-10
+
+###Complete
+- 멀티프로세스를 활용해서 병렬 실행 구현 18분에서 9분으로 시간 감축
+- remake 폴더에 class로 변형하여 코드 정리
+- 리스트 sort 완료
+
+###Todolist
+- gs25 속도가 너무 느려서 시간을 많이 잡아먹음 멀티스레드로 gs만 시간 줄여도 6분까지 시간 감축 가능
+- 세븐 일레븐 추가
+
+###add file
++ remake
