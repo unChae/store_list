@@ -30,7 +30,7 @@ def open_chrome(i):
     driver = driver_list[name].get_driver()
 
     # call function
-    create_franchise_object(name, driver)
+    return create_franchise_object(name, driver)
 
 def create_franchise_object(name, driver):
 
@@ -42,18 +42,22 @@ def create_franchise_object(name, driver):
     instance = getattr(module, name)(driver)
 
     # call function
-    get_data(instance)
+    return get_data(instance, driver)
 
-def get_data(instance):
+def get_data(instance, driver):
 
+    res = []
     # run get_data function
-    plus_data.append(instance.get_plus_data())
+    # res.append(instance.get_plus_data())
 
     # exception => not exist sale data
     try:
-        sale_data.append(instance.get_sale_data())
+        res.append(instance.get_sale_data())
     except:
-        return
+        driver.close()
+        return res
+    driver.close()
+    return res
 
 # module
 import time
@@ -61,11 +65,11 @@ import multiprocessing
 
 # start time
 start_time = time.time()
-
+res = []
 # start to multiprocessing
 if __name__ == '__main__':
     pool = multiprocessing.Pool(processes=4)
-    pool.map(open_chrome, franchise_list)
+    res.extend(pool.map(open_chrome, franchise_list))
     pool.close()
     pool.join()
 
@@ -75,12 +79,9 @@ if __name__ == '__main__':
     # check time for getting data
     print(end_time)
 
-    res = []
-    
-    # combinate plus_data & sale_data in res array
-    res.extend(plus_data)
-    res.extend(sale_data)
-    print(res)
+    # return data ['franchise'['plus, sale'['items'['item']]]]
+    # print(res)
+
     from modules import Insert_check
     from modules import Sort_items
     from modules import Insert_data
@@ -90,13 +91,9 @@ if __name__ == '__main__':
 
     # sort data
     res = Sort_items.func(res)
-
+    
     # insert data
     if ans == "Y" or ans == "y":
         Insert_data.func(res)
-
-
-
-
 
 

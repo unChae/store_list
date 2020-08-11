@@ -79,7 +79,6 @@ print store sale pruduct list by python crawling
 + plus_seven.py
 + sale_seven.py
 
-
 ---
 2020-08-10
 
@@ -94,3 +93,23 @@ print store sale pruduct list by python crawling
 
 ###add file
 + remake
+
+---
+2020-08-11
+
+###Complete
+- 세븐 일레븐 추가
+- 코드 새롭게 정리 완료 franchise_list.json에 필요사항만 입력하면 자동으로 크롤링 및 data insert
+
+###Todolist
+- Insert_data.py 소스코드 정리
+- 변수 정리
+- gs25 속도 개선
+- 펴늬 크롤링 시스템이랑 병합
+- 세븐 일레븐 세일 데이터를 주석에 적혀있는 값을 가져와서 입력하려고 해봤지만 13개 상품 이후에는 주석이 없어서 가져오기 실패
+> 세일값은 페이지 하나 하나 들어가서 가져와야할 거 같음
+> 페이지 주소로 하나 하나 이동 가능하도록 처리해놨으니 긁어서 배열에 때려넣고 return만 시켜주면 ok
+
+
+###add file
+none

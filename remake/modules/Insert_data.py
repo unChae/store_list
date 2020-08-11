@@ -1,9 +1,12 @@
 # data insert
+
+# module
 import requests
 from io import BytesIO
 from datetime import datetime
 import calendar
 from modules import Format
+import json
 
 # url 정보 가져오기
 import configparser
@@ -13,70 +16,75 @@ config.read('config.ini')
 url = config['URL']['TEST']
 # url = config['URL']['SERVER']
 
-def func(res):
-    for i, x in enumerate(res):
-        for y in x:
-            print("item", y)            
-
-            #img
-            image_url = y[3]
-            res = requests.get(image_url)
-            multiple_files = [
-                ('bf_file[0]', ('product.jpeg', BytesIO(res.content), 'image/png')),
-            ]
+# get franchise list from ./franchise_list.json
+with open('franchise_list.json') as json_file:
+    franchise_list = json.load(json_file)
     
-            # get month
-            month = datetime.today().month
-            year = datetime.today().year
-            last_day = calendar.monthrange(year, month)[1]
+def func(res):
+    for x in res:
+        # x = franchise array
+        for y in x:
+            # y = plus or sale item list
+            for z in y:
 
-            # day month formatting
-            last_day = Format.check_zero(last_day)
-            month = Format.check_zero(month)
+                print("item", z)      
 
-            # franchise
-            if i == 0:
-                wr_10 = 74
-            elif i == 1:
-                wr_10 = 72
-            elif i == 2:
-                wr_10 = 71
-            else:
-                wr_10 = 74
+                #img
+                image_url = z[3]
+                res = requests.get(image_url)
+                multiple_files = [
+                    ('bf_file[0]', ('product.jpeg', BytesIO(res.content), 'image/png')),
+                ]
+        
+                # get month
+                month = datetime.today().month
+                year = datetime.today().year
+                last_day = calendar.monthrange(year, month)[1]
 
-            if i < 3:
-                # first&second
-                first, second = y[2].split("+")
+                # day month formatting
+                last_day = Format.check_zero(last_day)
+                month = Format.check_zero(month)
 
-                data = {
-                    'w': '',
-                    'bo_table':'item',
-                    'ca_name':'프랜차이즈',
-                    'wr_10': wr_10,
-                    'wr_subject':y[0],
-                    'wr_2':y[1],
-                    'wr_3[chk]':'on',
-                    'wr_3[first]':first,
-                    'wr_3[last]':second,
-                    'wr_4[first]':'',
-                    'wr_4[last]':'',
-                    'wr_5':'2020-'+month+'-01',
-                    'wr_6':'2020-'+month+'-'+last_day
-                }
-            else:
-                data = {
-                    'w': '',
-                    'bo_table':'item',
-                    'ca_name':'프랜차이즈',
-                    'wr_10': wr_10,
-                    'wr_subject':y[0],
-                    'wr_2':y[1],
-                    'wr_3[first]':'',
-                    'wr_3[last]':'',
-                    'wr_4[chk]':'on',
-                    'wr_4[first]':y[2],
-                    'wr_4[last]':y[4],
-                    'wr_5':'2020-'+month+'-01',
-                    'wr_6':'2020-'+month+'-'+last_day
-                }
-            requests.post(url, data=data, files=multiple_files)
+                # franchise
+                for franchise in franchise_list:
+                    wr_10 = franchise["id"]
+                    
+                # plus == 0 or sale == 1
+                idx = x.index(y)
+
+                if idx == 0:
+                    # first&second
+                    first, second = z[2].split("+")
+
+                    data = {
+                        'w': '',
+                        'bo_table':'item',
+                        'ca_name':'프랜차이즈',
+                        'wr_10': wr_10,
+                        'wr_subject':z[0],
+                        'wr_2':z[1],
+                        'wr_3[chk]':'on',
+                        'wr_3[first]':first,
+                        'wr_3[last]':second,
+                        'wr_4[first]':'',
+                        'wr_4[last]':'',
+                        'wr_5':'2020-'+month+'-01',
+                        'wr_6':'2020-'+month+'-'+last_day
+                    }
+                else:
+                    data = {
+                        'w': '',
+                        'bo_table':'item',
+                        'ca_name':'프랜차이즈',
+                        'wr_10': wr_10,
+                        'wr_subject':z[0],
+                        'wr_2':z[1],
+                        'wr_3[first]':'',
+                        'wr_3[last]':'',
+                        'wr_4[chk]':'on',
+                        'wr_4[first]':z[2],
+                        'wr_4[last]':z[4],
+                        'wr_5':'2020-'+month+'-01',
+                        'wr_6':'2020-'+month+'-'+last_day
+                    }
+                requests.post(url, data=data, files=multiple_files)
