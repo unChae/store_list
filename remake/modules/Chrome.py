@@ -8,12 +8,16 @@ class Chrome:
     def __init__(self, name):
         self.name = name
 
-        #chromedriver 경로 설정
+        #chromedriver path setting
         CHROMEDRIVER_PATH = './chromedriver.exe'
 
         chrome_options = Options()
+        # hide windows
+        chrome_options.add_argument('headless')
+        chrome_options.add_argument('window-size=1920x1080')
+        chrome_options.add_argument("disable-gpu")
 
-        #브라우저 실행 및 탭 추가
+        # run browser
         self.driver = webdriver.Chrome( executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options )
     
     # url 이동
@@ -22,7 +26,3 @@ class Chrome:
 
     def get_driver(self):
         return self.driver
-        
-    # 크롬창 종료
-    def close(self):
-        self.driver.close()

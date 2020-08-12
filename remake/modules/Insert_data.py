@@ -25,6 +25,13 @@ def func(res):
         # x = franchise array
         for y in x:
             # y = plus or sale item list
+
+            # plus == 0 or sale == 1
+            idx = x.index(y)
+            length = len(x)
+            if length == 1:
+                length = False
+
             for z in y:
 
                 print("item", z)      
@@ -48,11 +55,10 @@ def func(res):
                 # franchise
                 for franchise in franchise_list:
                     wr_10 = franchise["id"]
-                    
-                # plus == 0 or sale == 1
-                idx = x.index(y)
 
-                if idx == 0:
+                if length == False:
+                    # plus만 있는 경우
+
                     # first&second
                     first, second = z[2].split("+")
 
@@ -72,19 +78,43 @@ def func(res):
                         'wr_6':'2020-'+month+'-'+last_day
                     }
                 else:
-                    data = {
-                        'w': '',
-                        'bo_table':'item',
-                        'ca_name':'프랜차이즈',
-                        'wr_10': wr_10,
-                        'wr_subject':z[0],
-                        'wr_2':z[1],
-                        'wr_3[first]':'',
-                        'wr_3[last]':'',
-                        'wr_4[chk]':'on',
-                        'wr_4[first]':z[2],
-                        'wr_4[last]':z[4],
-                        'wr_5':'2020-'+month+'-01',
-                        'wr_6':'2020-'+month+'-'+last_day
-                    }
+                    if idx == 0:
+                        # sale
+                        data = {
+                            'w': '',
+                            'bo_table':'item',
+                            'ca_name':'프랜차이즈',
+                            'wr_10': wr_10,
+                            'wr_subject':z[0],
+                            'wr_2':z[1],
+                            'wr_3[first]':'',
+                            'wr_3[last]':'',
+                            'wr_4[chk]':'on',
+                            'wr_4[first]':z[2],
+                            'wr_4[last]':z[4],
+                            'wr_5':'2020-'+month+'-01',
+                            'wr_6':'2020-'+month+'-'+last_day
+                        }
+                    else:
+                        # plus
+
+                        # first&second
+                        first, second = z[2].split("+")
+
+                        data = {
+                            'w': '',
+                            'bo_table':'item',
+                            'ca_name':'프랜차이즈',
+                            'wr_10': wr_10,
+                            'wr_subject':z[0],
+                            'wr_2':z[1],
+                            'wr_3[chk]':'on',
+                            'wr_3[first]':first,
+                            'wr_3[last]':second,
+                            'wr_4[first]':'',
+                            'wr_4[last]':'',
+                            'wr_5':'2020-'+month+'-01',
+                            'wr_6':'2020-'+month+'-'+last_day
+                        }
+                
                 requests.post(url, data=data, files=multiple_files)

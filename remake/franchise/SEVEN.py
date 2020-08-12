@@ -40,18 +40,13 @@ class SEVEN(object):
         while page:
             # last + component display check for find last page
             if self.num == 1:
-                if ("display" in items[-1].get_attribute('style')) == True:
+                # 1+1
+                if ("display" in items[-1].get_attribute('style')) == False:
                     items = change_page()
                 else:
                     page = False
-            elif self.num == 4:
-                try:
-                    "float" in items[-1].find_element_by_tag_name("a").get_attribute('style')
-                    items = change_page()
-                except:
-                    page = False
             else:
-                page = False
+                # 2+2 & sale
                 try:
                     "float" in items[-1].find_element_by_tag_name("a").get_attribute('style')
                     items = change_page()
@@ -62,7 +57,8 @@ class SEVEN(object):
 
     def get_plus_data(self):
         driver = self.driver
-        
+        self.result_item = []
+
         time.sleep(3)
 
         # setting
@@ -94,6 +90,7 @@ class SEVEN(object):
 
     def get_sale_data(self):
         driver = self.driver
+        self.result_item = []
 
         # change tab 2+2
         driver.execute_script("return fncTab('4')")
@@ -120,16 +117,33 @@ class SEVEN(object):
             # move to detail page
             driver.execute_script("return fncGoView('"+ i +"')")
             time.sleep(2)
-
+            
             try:
                 title = driver.find_element_by_css_selector(".tit_product_view").get_attribute('textContent')
-                # s_price
-                # price
-                # img
+                try:
+                    img = driver.find_element_by_css_selector(".product_img").find_element_by_tag_name("img").get_attribute('src')
+                except:
+                    img = ""
+                
+                s_price = driver.find_element_by_css_selector(".product_price").find_element_by_tag_name("strong").get_attribute('textContent')
+                s_price = s_price.split("할인가")[1]
+
+                price = driver.find_element_by_css_selector(".product_price").find_element_by_tag_name("del").get_attribute('textContent')
+                price = price.split(">")[0]
+
+                s_price = int(Format.price(s_price))
+                price = int(Format.price(price))
+                rate = 100 - int(s_price/price*100)
+
+                # except 0% item
+                if rate == 0:
+                    continue
+
+                print("SEVEN:", [title, price, rate, img, s_price])
+                self.result_item.append([title, price, rate, img, s_price])
             except:
                 continue
 
-        
         return self.result_item
         
 

@@ -11,9 +11,6 @@ with open('franchise_list.json') as json_file:
 
 driver_list = {}
 
-plus_data = []
-sale_data = []
-
 def open_chrome(i):
 
     # data binding
@@ -46,18 +43,18 @@ def create_franchise_object(name, driver):
 
 def get_data(instance, driver):
 
-    res = []
+    _res = []
     # run get_data function
-    # res.append(instance.get_plus_data())
+    _res.append(instance.get_plus_data())
 
     # exception => not exist sale data
     try:
-        res.append(instance.get_sale_data())
+        _res.append(instance.get_sale_data())
     except:
         driver.close()
-        return res
+        return _res
     driver.close()
-    return res
+    return _res
 
 # module
 import time
