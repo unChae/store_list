@@ -128,5 +128,7 @@ none
     1. 데이터 뿌려주는 서버단 api 제작
     1. 배포
 
+- 앱에서 카테고리 분류를 해야할 경우 어떻게 할지 생각해보기
+
 ##### Add file
  - folder name change(remake -> dist)
