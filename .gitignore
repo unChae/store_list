@@ -1,5 +1,13 @@
-ini
-test
-selenium_test
-log
+# security
+*.ini
+
+# debug data
+*.log
 __pycache__
+
+# not use folder
+/test
+/selenium_test
+/python/
+/deploy/
+
