@@ -3,6 +3,21 @@
         "id":85,
         "name":"SEVEN",
         "url":"http://www.7-eleven.co.kr/product/presentList.asp"
-    } 
+    },
+    {
+        "id":74,
+        "name":"EMART24",
+        "url":"https://emart24.co.kr/product/eventProduct.asp"
+    },
+    {
+        "id":71,
+        "name":"GS25",
+        "url":"http://gs25.gsretail.com/gscvs/ko/products/event-goods"
+    },
+    {
+        "id":72,
+        "name":"CU",
+        "url":"https://cu.bgfretail.com/event/plus.do"
+    }   
 ]
 
