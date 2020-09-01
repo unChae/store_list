@@ -81,16 +81,12 @@ if __name__ == '__main__':
 
     from modules import Insert_check
     from modules import Sort_items
-    from modules import Insert_data
-
-    # check for insert data
-    ans = Insert_check.func(res)
+    
 
     # sort data
     res = Sort_items.func(res)
-    
-    # insert data
-    if ans == "Y" or ans == "y":
-        Insert_data.func(res)
+
+    # check for insert data
+    Insert_check.func(res)
 
 
