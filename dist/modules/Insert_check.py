@@ -4,6 +4,7 @@
 # module
 import sys
 import json
+from modules import Insert_data
 
 def func(items):
     franchise_list = []
@@ -19,10 +20,14 @@ def func(items):
         try:
             print(name, "sale:", len(i[1]))
         except:
-            continue
+            print(name, "sale: no data")
 
-    print("Do you want to insert data?(y or n)")
-    while (ans == "y" or ans == "n" or ans == "Y" or ans == "N") == False:
-        ans = sys.stdin.readline()
-        ans = ans.replace("\n", "")
-    return ans
+        print("Do you want to insert this data?(y or n)")
+        while (ans == "y" or ans == "n" or ans == "Y" or ans == "N") == False:
+            ans = sys.stdin.readline()
+            ans = ans.replace("\n", "")
+        
+            # insert data
+        if ans == "Y" or ans == "y":
+            Insert_data.func(items[idx], idx)
+            ans = ""
