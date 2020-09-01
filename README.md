@@ -132,3 +132,9 @@ none
 
 ##### Add file
  - folder name change(remake -> dist)
+ 
+---
+### 2020-09-01
+
+##### Complete
+- seven bug fix
