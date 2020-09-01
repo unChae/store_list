@@ -31,17 +31,17 @@ class SEVEN(object):
         driver = self.driver
         items = self.items
         page = True
-
+        
         def change_page():
+            time.sleep(3)
             driver.execute_script("return fncMore('" + str(self.num) + "')")
-            time.sleep(1)
             return driver.find_element_by_css_selector("#listUl").find_elements_by_tag_name("li")
 
         while page:
             # last + component display check for find last page
             if self.num == 1:
                 # 1+1
-                if ("display" in items[-1].get_attribute('style')) == False:
+                if items[-1].get_attribute('class') == "btn_more":
                     items = change_page()
                 else:
                     page = False
