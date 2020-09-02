@@ -24,15 +24,17 @@ def func(res, index):
 
     # franchise
     wr_10 = franchise_list[index]["id"]
+    i = 0
+    
+    length = len(res)
+    if length == 1:
+        length = False
 
     for y in res:
         # y = plus or sale item list
 
         # plus == 0 or sale == 1
-        idx = res.index(y)
-        length = len(res)
-        if length == 1:
-            length = False
+        idx = i
 
         for z in y:
 
@@ -116,3 +118,4 @@ def func(res, index):
                     }
             
             requests.post(url, data=data, files=multiple_files)
+        i = i + 1
